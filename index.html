@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
+    <title>Sweet Tooth | Home</title>
+  </head>
+  <body>
+    <!--Navbar-->
+    <nav
+      class="
+        navbar navbar-expand-md navbar-light
+        bg-light
+        border-bottom
+        shadow-sm
+        sticky-top
+      "
+    >
+      <div class="container">
+        <a class="navbar-brand" href="./index.html">Sweet Tooth</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav m-auto">
+            <li class="nav-item">
+              <a class="nav-link indica active" href="./index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./products.html">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./contact.html">Contact Us</a>
+            </li>
+          </ul>
+          <div>
+            <a
+              href="./cart.html"
+              class="
+                btn btn-primary
+                bi bi-basket
+                position-relative
+                mb-4 mb-md-0
+              "
+            >
+              <span
+                class="position-absolute top-0 bg-danger badge rounded-pill"
+                id="count"
+                ></span
+              >
+            </a>
+          </div>
+        </div>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!--Showcase-->
+    <section>
+      <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carousel"
+            data-bs-slide-to="0"
+            class="active"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carousel"
+            data-bs-slide-to="1"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="5000">
+            <img src="./images/placeholder.png" alt="" class="d-block w-100" />
+            <div class="carousel-caption d-none d-md-block">
+              <h1>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Accusamus iure mollitia nam excepturi, suscipit dolorum incidunt
+                aliquid voluptatem reprehenderit perspiciatis, rem tempora
+                dolore vitae neque, dolorem debitis officia in animi?
+              </h1>
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="5000">
+            <img src="./images/placeholder.png" alt="" class="d-block w-100" />
+            <div class="carousel-caption d-none d-md-block">
+              <h1>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Cumque, veniam minus, dolorum, ratione aut eos iste et nesciunt
+                eligendi assumenda obcaecati tempora eum voluptates eveniet ex
+                ab omnis cupiditate totam.
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer  -->
+    <footer class="p-5 bg-light">
+      <div class="container">
+        <p class="lead">Coppyright &copy; 2021 Sweet Tooth</p>
+        <div class="position-relative">
+          <a href="#" class="position-absolute bottom-0 end-0"
+            ><i class="bi bi-arrow-up-circle h1"></i
+          ></a>
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <!-- <script type="module" src="./shop.js"></script> -->
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
