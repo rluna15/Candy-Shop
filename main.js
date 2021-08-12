@@ -22,17 +22,21 @@ function CreateShop() {
         for (var i = 0; i < items.length; i++) {
             container.innerHTML += `
             <div class="col" id="item">
-            <div class="card shadow-sm">
-                <h4 class="bg-light card-title text-center py-2 mb-0">${items[i].name}</h4>
-                <img src="./images/placeholder.png" alt="" />
-                <div class="card-body">
-                    <p class="card-text">
-                        ${items[i].info}
-                    </p>
-                    <button class="btn btn-lg btn-primary" id="addToCart">Buy</button>
-                    <h2 class="float-end">$${items[i].price}</h2>
+                <div class="card shadow-sm h-100">
+                    <h4 class="bg-light card-title text-center py-2 mb-0">
+                    ${items[i].name}
+                    </h4>
+                    <img src="./images/placeholder.png" alt="" />
+                    <div class="card-body">
+                        <p class="card-text">${items[i].info}</p>
+                    </div>
+                    <div class="card border-0">
+                        <h2 class="text-center">$${items[i].price}</h2>
+                        <button class="btn btn-lg btn-outline-primary" id="addToCart">
+                            Add To Cart
+                        </button>
+                    </div>
                 </div>
-            </div>
             </div>
             `;
         }
