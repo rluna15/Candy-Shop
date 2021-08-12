@@ -23,16 +23,15 @@ function CreateShop() {
             container.innerHTML += `
             <div class="col" id="item">
                 <div class="card shadow-sm h-100">
-                    <h4 class="bg-light card-title text-center py-2 mb-0">
-                    ${items[i].name}
-                    </h4>
                     <img src="./images/placeholder.png" alt="" />
                     <div class="card-body">
-                        <p class="card-text">${items[i].info}</p>
+                        <h5 class="fw-bold text-center py-2 mb-0">
+                        ${items[i].name}
+                        </h5>
                     </div>
                     <div class="card border-0">
-                        <h2 class="text-center">$${items[i].price}</h2>
-                        <button class="btn btn-lg btn-outline-primary" id="addToCart">
+                        <h4 class="text-center text-muted">$${items[i].price}.00</h4>
+                        <button class="btn btn-lg btn-outline-primary bi-basket" id="addToCart">
                             Add To Cart
                         </button>
                     </div>
@@ -98,12 +97,12 @@ function CreateCart() {
             <h3 class="text-center">${cartItems[i].name}</h3>
             <p class="fs-5 text-center">$${cartItems[i].price}</p>
             <div class="text-center">
-            <span class="btn btn-sm btn-outline-dark bi bi-chevron-left" id="minus"></span>
-            <span class="px-3 fw-bold" id="counter">${cartItems[i].incart}</span>
-            <span class="btn btn-sm btn-outline-dark bi bi-chevron-right" id="plus"></span>
+            <span class="btn-sm btn-outline-primary bi bi-caret-left" id="minus"></span>
+            <span class="px-1 fw-bold" id="counter">${cartItems[i].incart}</span>
+            <span class="btn-sm btn-outline-primary bi bi-caret-right" id="plus"></span>
             </div>
             <div class="text-center my-4">
-            <button class="btn-sm btn-close btn-outline-danger" id="delete"</button>
+            <button class="btn btn-sm btn-danger bi-x-lg"></button>
             </div>
             </div>
             `;
@@ -156,14 +155,14 @@ function GetQuantityButtons() {
 
     for (let i = 0; i < minus.length; i++) {
         minus[i].addEventListener("click", function () {
-            item = cartList[i];
+            let item = cartList[i];
             SubtractFromCount(item);
         })
     }
 
     for (let i = 0; i < plus.length; i++) {
         plus[i].addEventListener("click", function () {
-            item = cartList[i];
+            let item = cartList[i];
             AddToCount(item);
         })
     }

@@ -49,18 +49,12 @@
           <div>
             <a
               href="./cart.html"
-              class="
-                btn btn-primary
-                bi bi-basket
-                position-relative
-                mb-4 mb-md-0
-              "
+              class="btn btn-primary bi bi-bag position-relative mb-4 mb-md-0"
             >
               <span
                 class="position-absolute top-0 bg-danger badge rounded-pill"
                 id="count"
-                ></span
-              >
+              ></span>
             </a>
           </div>
         </div>
@@ -74,11 +68,40 @@
         </button>
       </div>
     </nav>
-    <h1>Cart</h1>
+    <!--Cart Contents-->
+    <section>
+      <div class="container">
+        <h2 class="fw-bolder text-center my-5">Shopping Cart</h2>
+        <div>
+          <div class="d-flex justify-content-around">
+            <h6 class="text-primary">Shopping Cart</h6>
+            <h6 class="text-muted">Billing Information</h6>
+            <h6 class="text-muted">Completed</h6>
+          </div>
+          <div class="progress m-2" style="height: 2px">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              style="width: 33%"
+            ></div>
+          </div>
+          <div class="btn-toolbar" role="toolbar">
+            <div class="btn-group" role="group">
+              <span class="btn-sm btn-outline-primary bi-caret-left"></span
+              ><span class="px-3 fw-bold align-self-">0</span
+              ><span
+                class="btn-sm btn-outline-primary bi-caret-right"
+              ></span>
+            </div>
+          </div>
+        </div>
+        <div id="cart-container"></div>
+      </div>
+    </section>
     <!--Footer-->
     <footer class="p-5 bg-light">
       <div class="container">
-        <p class="lead">Coppyright &copy; 2021 Shop</p>
+        <p class="lead">&copy; 2021 Sweet Tooth</p>
         <div class="position-relative">
           <a href="#" class="position-absolute bottom-0 end-0"
             ><i class="bi bi-arrow-up-circle h1"></i
