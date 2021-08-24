@@ -1,24 +1,38 @@
-import { Products } from "./Products.js";
-const items = Products();
+async function GetProductsJSON() {
+    let url = "products.json";
+    try {
+        let res = await fetch(url);
+        let data = await res.json();
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+}
 
-function Main() {
-    DisplayCount();
-    CreateShop();
+async function Main() {
+    let items = await GetProductsJSON();
+    CreateShop(items);
     CreateCart();
+    DisplayCount();
+
 }
 
 function DisplayCount() {
     let countContainer = document.querySelector("#count");
     let count = JSON.parse(localStorage.getItem("ItemCount"));
-    countContainer.innerHTML = count;
+    if (count == 0) {
+        countContainer.innerHTML = "";
+    } else {
+        countContainer.innerHTML = count;
+    }
 }
 
-function CreateShop() {
+function CreateShop(items) {
     let container = document.querySelector("#item-container");
 
     if (container != null) {
         container.innerHTML = ``;
-
+        
         for (var i = 0; i < items.length; i++) {
             container.innerHTML += `
             <div class="col" id="item">
@@ -31,23 +45,44 @@ function CreateShop() {
                     </div>
                     <div class="card border-0">
                         <h4 class="text-center text-muted">$${items[i].price}.00</h4>
-                        <button class="btn btn-lg btn-outline-primary bi-basket" id="addToCart">
-                            Add To Cart
+                        <button class="btn btn-lg btn-outline-secondary"
+                            data-bs-toggle="modal" 
+                            data-bs-target="#${items[i].name}-modal">
+                            Learn More
                         </button>
+                    </div>
+                </div>
+            </div>
+            <!--Modal For ${items[i].name}-->
+            <div class="modal fade" id="${items[i].name}-modal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">${items[i].name}</h5>
+                            <button class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img class="img-fluid"src="./images/placeholder.png"/>
+                            <h4>$${items[i].price}</h4>
+                            <p>${items[i].info}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-outline-primary" id="addToCart"> Add To Cart</button>
+                        </div>
                     </div>
                 </div>
             </div>
             `;
         }
-        GetBuyButtonsListeners();
+        GetBuyButtonsListeners(items);
     } else {
         return;
     }
 }
 
-function GetBuyButtonsListeners() {
+function GetBuyButtonsListeners(items) {
     let buyButtons = document.querySelectorAll("#addToCart");
-    let itemList = document.querySelectorAll("#item");
+    //let itemList = document.querySelectorAll("#item");
 
     for (let i = 0; i < buyButtons.length; i++) {
         buyButtons[i].addEventListener("click", function () {
@@ -87,10 +122,11 @@ function ItemCounter() {
 
 function CreateCart() {
     let cartContainer = document.querySelector("#cart-container");
-    let cartObj = JSON.parse(localStorage.getItem("Cart"));
-    let cartItems = Object.values(cartObj);
 
     if (cartContainer != null) {
+        let cartObj = JSON.parse(localStorage.getItem("Cart"));
+        let cartItems = Object.values(cartObj);
+
         for (let i = 0; i < cartItems.length; i++) {
             cartContainer.innerHTML += `
             <div class="border border-2 rounded m-2"id="cartItem">
@@ -102,7 +138,7 @@ function CreateCart() {
             <span class="btn-sm btn-outline-primary bi bi-caret-right" id="plus"></span>
             </div>
             <div class="text-center my-4">
-            <button class="btn btn-sm btn-danger bi-x-lg"></button>
+            <button class="btn btn-sm btn-danger bi-x-lg" id="delete"></button>
             </div>
             </div>
             `;

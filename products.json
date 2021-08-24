@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Apple",
+        "price": 100,
+        "incart": 0,
+        "info": "Apple phone are amazing."
+    },
+    {
+        "name": "Galaxy",
+        "price": 100,
+        "incart": 0,
+        "info": "Apple phone are amazing."
+    },
+    {
+        "name": "Google",
+        "price": 100,
+        "incart": 0,
+        "info": "Apple phone are amazing."
+    },
+    {
+        "name": "Samsung",
+        "price": 100,
+        "incart": 0,
+        "info": "Apple phone are amazing."
+    }
+    
+]
