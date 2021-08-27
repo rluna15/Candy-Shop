@@ -2,26 +2,34 @@
     {
         "name": "Apple",
         "price": 100,
+        "salePrice": 50,
         "incart": 0,
-        "info": "Apple phone are amazing."
+        "info": "Apple phone are amazing.",
+        "sale": true
     },
     {
         "name": "Galaxy",
         "price": 100,
+        "salePrice": 50,
         "incart": 0,
-        "info": "Apple phone are amazing."
+        "info": "Apple phone are amazing.",
+        "sale": false
     },
     {
         "name": "Google",
         "price": 100,
+        "salePrice": 50,
         "incart": 0,
-        "info": "Apple phone are amazing."
+        "info": "Apple phone are amazing.",
+        "sale": false
     },
     {
         "name": "Samsung",
         "price": 100,
+        "salePrice": 50,
         "incart": 0,
-        "info": "Apple phone are amazing."
+        "info": "Apple phone are amazing.",
+        "sale": false
     }
     
 ]

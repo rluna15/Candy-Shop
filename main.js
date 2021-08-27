@@ -14,6 +14,7 @@ async function Main() {
     CreateShop(items);
     CreateCart();
     DisplayCount();
+    DisplayItemsOnSale(items);
 
 }
 
@@ -32,20 +33,23 @@ function CreateShop(items) {
 
     if (container != null) {
         container.innerHTML = ``;
-        
+
         for (var i = 0; i < items.length; i++) {
+            
             container.innerHTML += `
             <div class="col" id="item">
                 <div class="card shadow-sm h-100">
+                    <span class="position-absolute top-0 end-0 badge bg-danger m-2" id="saleBadge">Sale</span>
                     <img src="./images/placeholder.png" alt="" />
-                    <div class="card-body">
-                        <h5 class="fw-bold text-center py-2 mb-0">
+                    <div class="card-body text-center">
+                        <h5 class="fw-bold">
                         ${items[i].name}
                         </h5>
-                    </div>
-                    <div class="card border-0">
-                        <h4 class="text-center text-muted">$${items[i].price}.00</h4>
-                        <button class="btn btn-lg btn-outline-secondary"
+                        <div class="d-flex justify-content-center">
+                        <h5 class="text-muted m-3" id="price">$${items[i].price}</h5>
+                        <h5 class="text-muted m-3" id="salePrice">$${items[i].salePrice}</h5>
+                        </div>
+                        <button class="btn btn-outline-dark"
                             data-bs-toggle="modal" 
                             data-bs-target="#${items[i].name}-modal">
                             Learn More
@@ -58,12 +62,13 @@ function CreateShop(items) {
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">${items[i].name}</h5>
+                            <h5 class="modal-title fw-bold">${items[i].name}</h5>
                             <button class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
                             <img class="img-fluid"src="./images/placeholder.png"/>
-                            <h4>$${items[i].price}</h4>
+                            <h4 id="price-modal">$${items[i].price}</h4>
+                            <h4 id="salePrice-modal">$${items[i].salePrice}</h4>
                             <p>${items[i].info}</p>
                         </div>
                         <div class="modal-footer">
@@ -122,27 +127,45 @@ function ItemCounter() {
 
 function CreateCart() {
     let cartContainer = document.querySelector("#cart-container");
+    let itemCount = parseInt(localStorage.getItem("ItemCount"));
 
     if (cartContainer != null) {
         let cartObj = JSON.parse(localStorage.getItem("Cart"));
         let cartItems = Object.values(cartObj);
 
-        for (let i = 0; i < cartItems.length; i++) {
+        if (itemCount == 0 || itemCount == null) {
             cartContainer.innerHTML += `
-            <div class="border border-2 rounded m-2"id="cartItem">
-            <h3 class="text-center">${cartItems[i].name}</h3>
-            <p class="fs-5 text-center">$${cartItems[i].price}</p>
-            <div class="text-center">
-            <span class="btn-sm btn-outline-primary bi bi-caret-left" id="minus"></span>
-            <span class="px-1 fw-bold" id="counter">${cartItems[i].incart}</span>
-            <span class="btn-sm btn-outline-primary bi bi-caret-right" id="plus"></span>
-            </div>
-            <div class="text-center my-4">
-            <button class="btn btn-sm btn-danger bi-x-lg" id="delete"></button>
+            <div class="card p-5">
+            <div class="card-body text-center">
+            <h3 class="card-title display-3 fw-bold">Your cart is empty</h3>
+            <p class="">You haven't added any items to your cart</p>
+            <p
+            class="bi-emoji-frown text-muted m-5"
+            style="font-size: 125px"></p>
+            <a class="btn btn-lg btn-outline-primary" href="products.html"
+            >Go Shopping</a>
             </div>
             </div>
             `;
+        } else {
+            for (let i = 0; i < cartItems.length; i++) {
+                cartContainer.innerHTML += `
+                <div class="border border-2 rounded m-2"id="cartItem">
+                <h3 class="text-center">${cartItems[i].name}</h3>
+                <p class="fs-5 text-center">$${cartItems[i].price}</p>
+                <div class="text-center">
+                <span class="btn-sm btn-outline-primary bi bi-caret-left" id="minus"></span>
+                <span class="px-1 fw-bold" id="counter">${cartItems[i].incart}</span>
+                <span class="btn-sm btn-outline-primary bi bi-caret-right" id="plus"></span>
+                </div>
+                <div class="text-center my-4">
+                <button class="btn btn-sm btn-danger bi-x-lg" id="delete"></button>
+                </div>
+                </div>
+                `;
+            }
         }
+
         GetDeleteButtons();
         GetQuantityButtons();
         DisplayCount();
@@ -250,6 +273,26 @@ function CalculateTotal() {
                 totalContainer.innerHTML = total;
             }
         }
+    }
+}
+
+function DisplayItemsOnSale(items){
+    let shopContainer = document.querySelectorAll("#item-container")
+    let saleBadge = document.querySelectorAll("#saleBadge");
+    let price = document.querySelectorAll("#price");
+    let salePrice = document.querySelectorAll("#salePrice");
+    if (shopContainer) {
+        for (var i = 0; i < items.length; i++) {
+
+            if (!items[i].sale) {
+                saleBadge[i].classList.add("d-none");
+                salePrice[i].classList.add("d-none");
+            } else {
+                price[i].classList.add("text-decoration-line-through");
+            }
+        }
+    } else {
+        return;
     }
 }
 
