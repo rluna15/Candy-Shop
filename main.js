@@ -35,7 +35,7 @@ function CreateShop(items) {
         container.innerHTML = ``;
 
         for (var i = 0; i < items.length; i++) {
-            
+
             container.innerHTML += `
             <div class="col" id="item">
                 <div class="card shadow-sm h-100">
@@ -127,27 +127,10 @@ function ItemCounter() {
 
 function CreateCart() {
     let cartContainer = document.querySelector("#cart-container");
-    let itemCount = parseInt(localStorage.getItem("ItemCount"));
-
-    if (cartContainer != null) {
+    if (cartContainer) {
         let cartObj = JSON.parse(localStorage.getItem("Cart"));
         let cartItems = Object.values(cartObj);
-
-        if (itemCount == 0 || itemCount == null) {
-            cartContainer.innerHTML += `
-            <div class="card p-5">
-            <div class="card-body text-center">
-            <h3 class="card-title display-3 fw-bold">Your cart is empty</h3>
-            <p class="">You haven't added any items to your cart</p>
-            <p
-            class="bi-emoji-frown text-muted m-5"
-            style="font-size: 125px"></p>
-            <a class="btn btn-lg btn-outline-primary" href="products.html"
-            >Go Shopping</a>
-            </div>
-            </div>
-            `;
-        } else {
+        if (cartItems.length > 0) {
             for (let i = 0; i < cartItems.length; i++) {
                 cartContainer.innerHTML += `
                 <div class="border border-2 rounded m-2"id="cartItem">
@@ -164,12 +147,28 @@ function CreateCart() {
                 </div>
                 `;
             }
+            GetDeleteButtons();
+            GetQuantityButtons();
+            DisplayCount();
+            CalculateTotal();
+        } else {
+            console.log("not item count");
+            let btnlower = document.querySelector("#btnCheckout");
+            btnlower.classList.add("d-none");
+            cartContainer.innerHTML += `
+            <div class="card p-5">
+            <div class="card-body text-center">
+            <h3 class="card-title display-3 fw-bold">Your cart is empty</h3>
+            <p class="">You haven't added any items to your cart</p>
+            <p
+            class="bi-emoji-frown text-muted m-5"
+            style="font-size: 125px"></p>
+            <a class="btn btn-lg btn-outline-primary" href="products.html"
+            >Go Shopping</a>
+            </div>
+            </div>
+            `;
         }
-
-        GetDeleteButtons();
-        GetQuantityButtons();
-        DisplayCount();
-        CalculateTotal();
     } else {
         return;
     }
@@ -276,12 +275,12 @@ function CalculateTotal() {
     }
 }
 
-function DisplayItemsOnSale(items){
+function DisplayItemsOnSale(items) {
     let shopContainer = document.querySelectorAll("#item-container")
     let saleBadge = document.querySelectorAll("#saleBadge");
     let price = document.querySelectorAll("#price");
     let salePrice = document.querySelectorAll("#salePrice");
-    if (shopContainer) {
+    if (shopContainer & saleBadge & price & salePrice) {
         for (var i = 0; i < items.length; i++) {
 
             if (!items[i].sale) {
