@@ -15,13 +15,14 @@ async function Main() {
     CreateCart();
     DisplayCount();
     DisplayItemsOnSale(items);
-
+    DisplayItemList();
+    GetDataFromLocalStorage();
 }
 
 function DisplayCount() {
     let countContainer = document.querySelector("#count");
     let count = JSON.parse(localStorage.getItem("ItemCount"));
-    if (count == 0) {
+    if (count == 0 || count == null) {
         countContainer.innerHTML = "";
     } else {
         countContainer.innerHTML = count;
@@ -127,12 +128,13 @@ function ItemCounter() {
 
 function CreateCart() {
     let cartContainer = document.querySelector("#cart-container");
+    let cartItems = GetDataFromLocalStorage();
     if (cartContainer) {
-        let cartObj = JSON.parse(localStorage.getItem("Cart"));
-        let cartItems = Object.values(cartObj);
-        if (cartItems.length > 0) {
+        // let cartObj = JSON.parse(localStorage.getItem("Cart"));
+        // let cartItems = Object.values(cartObj);
+        if (cartItems) {
             for (let i = 0; i < cartItems.length; i++) {
-                cartContainer.innerHTML += `
+                /* cartContainer.innerHTML += `
                 <div class="border border-2 rounded m-2"id="cartItem">
                 <h3 class="text-center">${cartItems[i].name}</h3>
                 <p class="fs-5 text-center">$${cartItems[i].price}</p>
@@ -145,6 +147,85 @@ function CreateCart() {
                 <button class="btn btn-sm btn-danger bi-x-lg" id="delete"></button>
                 </div>
                 </div>
+                `; */
+                cartContainer.innerHTML += `
+                    <div id="cartItem" class="border border-1 rounded-3 shadow-sm my-3">
+                    <div class="row row-cols-1 row-cols-md-1 row-cols-lg-6">
+                    <img
+                        class="img-fluid mb-sm-3 mb-lg-0"
+                        src="./images/placeholder.png"
+                        alt=""
+                    />
+                    <div
+                        class="
+                        h5
+                        d-flex
+                        justify-content-center
+                        align-items-center
+                        mb-sm-3 mb-lg-0
+                        "
+                    >
+                        <span>${cartItems[i].name}</span>
+                    </div>
+                    <div
+                        class="
+                        h5
+                        d-flex
+                        justify-content-center
+                        align-items-center
+                        mb-sm-3 mb-lg-0
+                        "
+                    >
+                        <span>Price:</span>
+                        <span class="px-2">$${cartItems[i].price}</span>
+                        <span class="px-2"></span>
+                    </div>
+                    <div
+                        class="
+                        fs-4
+                        text-center
+                        d-lg-flex
+                        justify-content-center
+                        align-items-center
+                        mb-sm-3 mb-lg-0
+                        "
+                    >
+                        <span
+                        class="btn-sm btn-outline-primary bi bi-caret-left"
+                        id="minus"
+                        style="font-size: 25px"
+                        ></span>
+                        <span class="px-1 fw-bold mx-2" id="counter">${cartItems[i].incart}</span>
+                        <span
+                        class="btn-sm btn-outline-primary bi bi-caret-right"
+                        id="plus"
+                        style="font-size: 25px"
+                        ></span>
+                    </div>
+                    <div
+                        class="
+                        h5
+                        d-flex
+                        justify-content-center
+                        align-items-center
+                        mb-sm-3 mb-lg-0
+                        "
+                    >
+                        <span>Total:</span>
+                        <span class="px-2">$${cartItems[i].price * cartItems[i].incart}</span>
+                    </div>
+                    <div
+                        class="
+                        d-flex
+                        justify-content-center
+                        align-items-center
+                        mb-sm-3 mb-lg-0
+                        "
+                    >
+                        <button id="delete" class="btn btn-outline-danger bi-x-lg"></button>
+                    </div>
+                    </div>
+                </div>
                 `;
             }
             GetDeleteButtons();
@@ -152,7 +233,6 @@ function CreateCart() {
             DisplayCount();
             CalculateTotal();
         } else {
-            console.log("not item count");
             let btnlower = document.querySelector("#btnCheckout");
             btnlower.classList.add("d-none");
             cartContainer.innerHTML += `
@@ -257,12 +337,24 @@ function SubtractFromCount(item) {
 }
 
 function CalculateTotal() {
-    let totalContainer = document.querySelector("#total");
-    let cartObj = JSON.parse(localStorage.getItem("Cart"));
-    let cartItems = Object.values(cartObj);
+    let cartItems = GetDataFromLocalStorage();
     let total = 0;
 
-    if (totalContainer != null) {
+    if (cartItems) {
+        for (let i = 0; i < cartItems.length; i++) {
+            if (cartItems[i].sale) {
+                var cal = cartItems[i].salePrice * cartItems[i].incart;
+                total += cal;
+            } else {
+                var cal = cartItems[i].price * cartItems[i].incart;
+                total += cal;
+            }
+        }
+    }
+
+    return total;
+
+    /* if (totalContainer != null) {
         if (cartItems.length == 0) {
             totalContainer.innerHTML = total;
         } else {
@@ -272,15 +364,16 @@ function CalculateTotal() {
                 totalContainer.innerHTML = total;
             }
         }
-    }
+    } */
 }
 
 function DisplayItemsOnSale(items) {
-    let shopContainer = document.querySelectorAll("#item-container")
+    let shopContainer = document.querySelector("#item-container")
     let saleBadge = document.querySelectorAll("#saleBadge");
     let price = document.querySelectorAll("#price");
     let salePrice = document.querySelectorAll("#salePrice");
-    if (shopContainer & saleBadge & price & salePrice) {
+
+    if (shopContainer) {
         for (var i = 0; i < items.length; i++) {
 
             if (!items[i].sale) {
@@ -292,6 +385,66 @@ function DisplayItemsOnSale(items) {
         }
     } else {
         return;
+    }
+}
+
+function DisplayItemList() {
+    const itemCount = parseInt(localStorage.getItem("ItemCount"))
+    const cartItems = GetDataFromLocalStorage();
+    const total = CalculateTotal();
+
+    let listGroup = document.querySelector("#listGroup");
+    let listCounter = document.querySelector("#listCounter");
+
+    if (listGroup && cartItems) {
+        listCounter.innerHTML = itemCount;
+        for (let i = 0; i < cartItems.length; i++) {
+            if (cartItems[i].sale) {
+                listGroup.innerHTML += `
+                <li class="list-group-item bg-danger">
+                <div class="row text-light">
+                  <div class="col">${cartItems[i].name}</div>
+                  <div class="col-auto">x${cartItems[i].incart}</div>
+                  <div class="col col-3 text-center">$${cartItems[i].salePrice * cartItems[i].incart}</div>
+                </div>
+                </li>
+                `;
+            } else {
+                listGroup.innerHTML += `
+                <li class="list-group-item">
+                <div class="row">
+                  <div class="col">${cartItems[i].name}</div>
+                  <div class="col-auto">x${cartItems[i].incart}</div>
+                  <div class="col col-3 text-center">$${cartItems[i].price * cartItems[i].incart}</div>
+                </div>
+                </li>
+                `;
+            }
+        }
+        listGroup.innerHTML += `
+        <li class="
+          list-group-item
+          d-flex
+          justify-content-between
+          fw-bold
+          fs-5
+          bg-light
+        ">
+            <div class="text-success">Total</div>
+            <div class="text-success px-2 px-sm-4 px-md-1 px-lg-3 px-xl-4">$${total}</div>
+        </li>
+        `;
+    } else {
+        return;
+    }
+}
+
+function GetDataFromLocalStorage() {
+    let cartObj = JSON.parse(localStorage.getItem("Cart"));
+    if (cartObj) {
+        return Object.values(cartObj);
+    } else {
+        return false;
     }
 }
 

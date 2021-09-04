@@ -91,17 +91,33 @@
       <!-- Item list -->
       <div class="border border-1 rounded-3 p-4 my-3 shadow-sm">
         <div class="row g-5">
-          <div class="col-md-5 order-md-last">
+          <div class="col-md-5 order-md-last" id="itemListContainer">
             <div class="d-flex justify-content-between align-items-center px-2">
               <h3>In Cart</h3>
-              <p class="h3 fs-6 badge bg-primary rounded-pill">3</p>
+              <p class="h3 fs-6 badge bg-primary rounded-pill" id="listCounter"></p>
             </div>
-            <ul class="list-group">
+            <ul class="list-group" id="listGroup">
+              <!-- <li class="list-group-item">
+                <div class="row">
+                  <div class="col">Product Name for something </div>
+                  <div class="col-md-auto">x1</div>
+                  <div class="col col-3 text-center">$100</div>
+                </div>
+              </li>
               <li class="list-group-item d-flex justify-content-between">
                 <div>Product Name</div>
                 <div class="d-flex align-items-center">
                   <div class="badge bg-primary rounded-pill mx-3">1</div>
                   <div>$10</div>
+                </div>
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <div>Product Name with something asdf asdf</div>
+                <div class="badge bg-primary rounded-pill mx-3 float-start">1</div>
+                <div>$100</div>
+                <div class="d-flex align-items-center">
+                  <div class="badge bg-primary rounded-pill mx-3 float-start">1</div>
+                  <div>$100</div>
                 </div>
               </li>
               <li
@@ -115,8 +131,8 @@
                 "
               >
                 <div class="text-success">Total</div>
-                <div class="text-success">$100</div>
-              </li>
+                <div class="text-success" id="inCartTotal">$100</div>
+              </li> -->
             </ul>
           </div>
           <!-- Order Form -->
@@ -195,7 +211,7 @@
           </div>
         </div>
       </div>
-      <!-- Item List with Total -->
+      <!-- Lower Buttons -->
       <div class="border border-1 rounded-3 p-3 my-3 shadow-sm">
         <div class="row row-cols-1 row-cols-md-2 g-3">
           <div class="col">
