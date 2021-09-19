@@ -17,6 +17,8 @@ async function Main() {
     DisplayItemsOnSale(items);
     DisplayItemList();
     GetDataFromLocalStorage();
+    OrderValidation();
+    DisplayBilling();
 }
 
 function DisplayCount() {
@@ -36,7 +38,6 @@ function CreateShop(items) {
         container.innerHTML = ``;
 
         for (var i = 0; i < items.length; i++) {
-
             container.innerHTML += `
             <div class="col" id="item">
                 <div class="card shadow-sm h-100">
@@ -130,25 +131,90 @@ function CreateCart() {
     let cartContainer = document.querySelector("#cart-container");
     let cartItems = GetDataFromLocalStorage();
     if (cartContainer) {
-        // let cartObj = JSON.parse(localStorage.getItem("Cart"));
-        // let cartItems = Object.values(cartObj);
-        if (cartItems) {
+        if (cartItems.length > 0) {
             for (let i = 0; i < cartItems.length; i++) {
-                /* cartContainer.innerHTML += `
-                <div class="border border-2 rounded m-2"id="cartItem">
-                <h3 class="text-center">${cartItems[i].name}</h3>
-                <p class="fs-5 text-center">$${cartItems[i].price}</p>
-                <div class="text-center">
-                <span class="btn-sm btn-outline-primary bi bi-caret-left" id="minus"></span>
-                <span class="px-1 fw-bold" id="counter">${cartItems[i].incart}</span>
-                <span class="btn-sm btn-outline-primary bi bi-caret-right" id="plus"></span>
+                if (cartItems[i].sale) {
+                    cartContainer.innerHTML += `
+                    <div id="cartItem" class="border border-1 rounded-3 shadow-sm my-3">
+                    <div class="row row-cols-1 row-cols-md-1 row-cols-lg-6">
+                    <img
+                        class="img-fluid mb-sm-3 mb-lg-0"
+                        src="./images/placeholder.png"
+                        alt=""
+                    />
+                    <div
+                        class="
+                        h5
+                        d-flex
+                        justify-content-center
+                        align-items-center
+                        mb-sm-3 mb-lg-0
+                        "
+                    >
+                        <span>${cartItems[i].name}</span>
+                    </div>
+                    <div
+                        class="
+                        h5
+                        d-flex
+                        justify-content-center
+                        align-items-center
+                        mb-sm-3 mb-lg-0
+                        "
+                    >
+                        <span>Price:</span>
+                        <s class="px-2">$${cartItems[i].price}</s>
+                        <span class="px-2">$${cartItems[i].salePrice}</span>
+                    </div>
+                    <div
+                        class="
+                        fs-4
+                        text-center
+                        d-lg-flex
+                        justify-content-center
+                        align-items-center
+                        mb-sm-3 mb-lg-0
+                        "
+                    >
+                        <span
+                        class="btn-sm btn-outline-primary bi bi-caret-left"
+                        id="minus"
+                        style="font-size: 25px"
+                        ></span>
+                        <span class="px-1 fw-bold mx-2" id="counter">${cartItems[i].incart}</span>
+                        <span
+                        class="btn-sm btn-outline-primary bi bi-caret-right"
+                        id="plus"
+                        style="font-size: 25px"
+                        ></span>
+                    </div>
+                    <div
+                        class="
+                        h5
+                        d-flex
+                        justify-content-center
+                        align-items-center
+                        mb-sm-3 mb-lg-0
+                        "
+                    >
+                        <span>Total:</span>
+                        <span class="px-2">$${cartItems[i].salePrice * cartItems[i].incart}</span>
+                    </div>
+                    <div
+                        class="
+                        d-flex
+                        justify-content-center
+                        align-items-center
+                        mb-sm-3 mb-lg-0
+                        "
+                    >
+                        <button id="delete" class="btn btn-outline-danger bi-x-lg"></button>
+                    </div>
+                    </div>
                 </div>
-                <div class="text-center my-4">
-                <button class="btn btn-sm btn-danger bi-x-lg" id="delete"></button>
-                </div>
-                </div>
-                `; */
-                cartContainer.innerHTML += `
+                `;
+                } else {
+                    cartContainer.innerHTML += `
                     <div id="cartItem" class="border border-1 rounded-3 shadow-sm my-3">
                     <div class="row row-cols-1 row-cols-md-1 row-cols-lg-6">
                     <img
@@ -227,6 +293,7 @@ function CreateCart() {
                     </div>
                 </div>
                 `;
+                }
             }
             GetDeleteButtons();
             GetQuantityButtons();
@@ -235,6 +302,7 @@ function CreateCart() {
         } else {
             let btnlower = document.querySelector("#btnCheckout");
             btnlower.classList.add("d-none");
+
             cartContainer.innerHTML += `
             <div class="card p-5">
             <div class="card-body text-center">
@@ -256,22 +324,18 @@ function CreateCart() {
 
 function GetDeleteButtons() {
     let deleteButtons = document.querySelectorAll("#delete");
-    let cartList = document.querySelectorAll("#cartItem");
 
     for (let i = 0; i < deleteButtons.length; i++) {
         deleteButtons[i].addEventListener("click", function () {
-            cartItem = cartList[i];
-            RemoveFromCart(cartItem);
+            RemoveFromCart(i);
             UpdateItemCount(i);
         });
     }
 }
 
-function RemoveFromCart(item) {
-    let cartItems = JSON.parse(localStorage.getItem("Cart"));
-    var itemName = item.firstElementChild.innerHTML;
-
-    delete cartItems[itemName];
+function RemoveFromCart(i) {
+    let cartItems = GetDataFromLocalStorage();
+    cartItems.splice(i, 1);
 
     localStorage.setItem("Cart", JSON.stringify(cartItems));
     location.reload();
@@ -281,53 +345,51 @@ function UpdateItemCount(i) {
     let itemCount = JSON.parse(localStorage.getItem("ItemCount"));
     let counters = document.querySelectorAll("#counter");
 
-    itemCount -= counters[i].innerHTML;
+    if (itemCount > 0) {
+        itemCount -= counters[i].innerHTML;
+    } else {
+        return;
+    }
+
 
     localStorage.setItem("ItemCount", JSON.stringify(itemCount));
 }
 
 function GetQuantityButtons() {
-    let cartList = document.querySelectorAll("#cartItem");
     let minus = document.querySelectorAll("#minus");
     let plus = document.querySelectorAll("#plus");
 
     for (let i = 0; i < minus.length; i++) {
         minus[i].addEventListener("click", function () {
-            let item = cartList[i];
-            SubtractFromCount(item);
+            SubtractFromCount(i);
         })
     }
 
     for (let i = 0; i < plus.length; i++) {
         plus[i].addEventListener("click", function () {
-            let item = cartList[i];
-            AddToCount(item);
+            AddToCount(i);
         })
     }
 }
 
-function AddToCount(item) {
-    let cartItems = JSON.parse(localStorage.getItem("Cart"));
+function AddToCount(i) {
+    let cartItems = GetDataFromLocalStorage();
     let itemCount = parseInt(localStorage.getItem("ItemCount"));
-    let itemName = item.firstElementChild.innerHTML;
-
-    cartItems[itemName].incart += 1;
-
+    cartItems[i].incart += 1;
     localStorage.setItem("ItemCount", itemCount + 1);
     localStorage.setItem("Cart", JSON.stringify(cartItems));
 
     location.reload();
 }
 
-function SubtractFromCount(item) {
-    let cartItems = JSON.parse(localStorage.getItem("Cart"));
+function SubtractFromCount(i) {
+    let cartItems = GetDataFromLocalStorage();
     let itemCount = parseInt(localStorage.getItem("ItemCount"));
-    let itemName = item.firstElementChild.innerHTML;
 
-    if (cartItems[itemName].incart == 1) {
+    if (cartItems[i].incart == 1) {
         return;
     } else {
-        cartItems[itemName].incart -= 1;
+        cartItems[i].incart -= 1;
     }
 
     localStorage.setItem("ItemCount", itemCount - 1);
@@ -351,20 +413,7 @@ function CalculateTotal() {
             }
         }
     }
-
     return total;
-
-    /* if (totalContainer != null) {
-        if (cartItems.length == 0) {
-            totalContainer.innerHTML = total;
-        } else {
-            for (let i = 0; i < cartItems.length; i++) {
-                let cal = cartItems[i].price * cartItems[i].incart;
-                total += cal;
-                totalContainer.innerHTML = total;
-            }
-        }
-    } */
 }
 
 function DisplayItemsOnSale(items) {
@@ -445,6 +494,231 @@ function GetDataFromLocalStorage() {
         return Object.values(cartObj);
     } else {
         return false;
+    }
+}
+
+function OrderValidation() {
+    let submit = document.querySelector("#submitBtn");
+    if (submit != undefined) {
+        submit.addEventListener("click", (evt) => {
+
+            if (evt.preventDefault) {
+                evt.preventDefault();
+            } else {
+                evt.returnValue = false;
+            }
+
+            let firstName = document.forms["orderForm"]["firstName"].value;
+            let lastName = document.forms["orderForm"]["lastName"].value;
+            let address = document.forms["orderForm"]["address"].value;
+            let email = document.forms["orderForm"]["email"].value;
+            let state = document.forms["orderForm"]["state"].value;
+            let zip = document.forms["orderForm"]["zip"].value;
+            let nameOnCard = document.forms["orderForm"]["nameOnCard"].value;
+            let cardNumber = document.forms["orderForm"]["cardNumber"].value;
+            let expDate = document.forms["orderForm"]["expDate"].value;
+            let cvv = document.forms["orderForm"]["cvv"].value;
+
+            let textPattern = /^[a-zA-z ]*$/;
+            let addressPattern = /\d+[ ](?:[A-Za-z0-9.-]+[ ]?)+(?:Avenue|Lane|Road|Boulevard|Drive|Street|Ave|Dr|Rd|Blvd|Ln|St)\.?/;
+            let emailPattern = /^[_a-zA-Z0-9\\-]+(\.[_a-zA-Z0-9\\-]+)*@[a-zA-Z0-9\\-]+(\.[a-zA-Z0-9\\-]+)*(\.[a-z]{2,6})$/;
+            let statePattern = /AL|AK|AS|AZ|AR|CA|CO|CT|DE|DC|FM|FL|GA|GU|HI|ID|IL|IN|IA|KS|KY|LA|ME|MH|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|MP|OH|OK|OR|PW|PA|PR|RI|SC|SD|TN|TX|UT|VT|VI|VA|WA|WV|WI|WY/;
+            let zipPattern = /\b\d{5}(?:-\d{4})?\b/;
+            let cardNumberPattern = /^(?:4[0-9]{12}(?:[0-9]{3})?|(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|6(?:011|5[0-9]{2})[0-9]{12}|(?:2131|1800|35\d{3})\d{11})$/;
+            let expDatePattern = /^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/;
+            let cvvPattern = /\d{3}/;
+
+            let errorMsg = document.querySelectorAll(".invalid-feedback");
+            let formValid;
+
+            if (textPattern.test(firstName) && firstName != "") {
+                console.log("First Name:", "ok");
+                errorMsg[0].classList.remove("d-block");
+                formValid = true;
+            } else {
+                console.log("First Name:", "not ok");
+                errorMsg[0].classList.add("d-block");
+                formValid = false;
+            }
+            if (textPattern.test(lastName) && lastName != "") {
+                console.log("Last Name:", "ok");
+                errorMsg[1].classList.remove("d-block");
+                formValid = true;
+            } else {
+                console.log("Last Name:", "not ok");
+                errorMsg[1].classList.add("d-block");
+                formValid = false;
+            }
+            if (addressPattern.test(address) && address != "") {
+                console.log("Address:", "ok");
+                errorMsg[2].classList.remove("d-block");
+                formValid = true;
+            } else {
+                console.log("Address:", "not ok");
+                errorMsg[2].classList.add("d-block");
+                formValid = false;
+            }
+            if (emailPattern.test(email) && email != "") {
+                console.log("Email:", "ok");
+                errorMsg[3].classList.remove("d-block");
+                formValid = true;
+            } else {
+                console.log("Email:", "not ok");
+                errorMsg[3].classList.add("d-block");
+                formValid = false;
+            }
+            if (statePattern.test(state) && state != "") {
+                console.log("State:", "ok");
+                errorMsg[4].classList.remove("d-block");
+                formValid = true;
+            } else {
+                console.log("State:", "not ok");
+                errorMsg[4].classList.add("d-block");
+                formValid = false;
+            }
+            if (zipPattern.test(zip) && zip != "") {
+                console.log("Zip:", "ok");
+                errorMsg[4].classList.remove("d-block");
+                formValid = true;
+            } else {
+                console.log("Zip:", "not ok");
+                errorMsg[5].classList.add("d-block");
+                formValid = false;
+            }
+            if (textPattern.test(nameOnCard) && nameOnCard != "") {
+                console.log("Name on Card:", "ok");
+                errorMsg[6].classList.remove("d-block");
+                formValid = true;
+            } else {
+                console.log("Name on Card:", "not ok");
+                errorMsg[6].classList.add("d-block");
+                formValid = false;
+            }
+            if (cardNumberPattern.test(cardNumber) && cardNumber != "") {
+                console.log("Card Number:", "ok");
+                errorMsg[7].classList.remove("d-block");
+                formValid = true;
+            } else {
+                console.log("Card Number:", "not ok");
+                errorMsg[7].classList.add("d-block");
+                formValid = false;
+            }
+            if (expDatePattern.test(expDate) && expDate != "") {
+                console.log("Exp Date:", "ok");
+                errorMsg[8].classList.remove("d-block");
+                formValid = true;
+            } else {
+                console.log("Exp Date:", "not ok");
+                errorMsg[8].classList.add("d-block");
+                formValid = false;
+            }
+            if (cvvPattern.test(cvv) && cvv != "") {
+                console.log("CVV:", "ok");
+                errorMsg[9].classList.remove("d-block");
+                formValid = true;
+            } else {
+                console.log("CVV:", "not ok");
+                errorMsg[9].classList.add("d-block");
+                formValid = false;
+            }
+            //this is here to testing and demo of the form validation
+            formValid = true;
+
+            if (formValid) {
+                SubmitForm();
+            }
+        });
+    } else {
+        return;
+    }
+}
+
+function SubmitForm() {
+    let elements = document.forms["orderForm"].elements;
+    let items = GetDataFromLocalStorage();
+    let billing = {
+        name: "",
+        address: "",
+        email: "",
+        country: "",
+        state: "",
+        zip: "",
+        cardNumber: "",
+        items: []
+    };
+    billing.name = elements[0].value + " " + elements[1].value;
+    billing.address = elements[2].value;
+    billing.email = elements[3].value;
+    billing.country = elements[4].value;
+    billing.state = elements[5].value;
+    billing.zip = elements[6].value;
+    billing.cardNumber = elements[8].value;
+    billing.items = items;
+
+
+    console.log(billing);
+    localStorage.setItem("Billing", JSON.stringify(billing));
+    window.location.href = "./order.html";
+}
+
+function RemoveDataFromStorage() {
+    localStorage.removeItem("Cart");
+    localStorage.removeItem("ItemCount");
+    localStorage.removeItem("Billing");
+}
+
+function DisplayBilling() {
+    let orderDetails = document.querySelector("#orderDetails");
+
+    if (orderDetails != undefined) {
+        let billing = JSON.parse(localStorage.getItem("Billing"));
+        orderDetails.innerHTML = `
+        <p class="fw-bold">
+            Name: <span class="fw-normal">${billing.name}</span>
+        </p>
+        <p class="fw-bold">
+            Address: <span class="fw-normal">
+                ${billing.address} ${billing.state} ${billing.zip} 
+            </span>
+        </p>
+        <p class="fw-bold">
+            Email: <span class="fw-normal">${billing.email}</span>
+        </p>
+        <p class="fw-bold">
+            Card Number: <span class="fw-normal">${billing.cardNumber}</span>
+        </p>
+        `;
+        for (let i = 0; i < billing.items.length; i++) {
+            if (billing.items[i].sale) {
+                orderDetails.innerHTML += `
+                    <hr>
+                    <p>
+                    ${billing.items[i].name} 
+                    <br>Price: <del>$${billing.items[i].price}</del>
+                    <span class="text-danger">$${billing.items[i].salePrice}</span>
+                    <br>Quantity: ${billing.items[i].incart}
+                    <br>$${billing.items[i].salePrice * billing.items[i].incart}
+                    </p>
+                `;
+            } else {
+                orderDetails.innerHTML += `
+                <hr>
+                <p>
+                ${billing.items[i].name} 
+                <br>Price: $${billing.items[i].price}
+                <br>Quantity: ${billing.items[i].incart}
+                <br>$${billing.items[i].price * billing.items[i].incart}
+                </p>
+                `;
+            }
+        }
+        const total = CalculateTotal();
+        orderDetails.innerHTML += `
+        <hr>
+        <p class="fw-bold">Total: $${total}</p>
+        `;
+    } else {
+        return;
     }
 }
 

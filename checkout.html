@@ -94,7 +94,10 @@
           <div class="col-md-5 order-md-last" id="itemListContainer">
             <div class="d-flex justify-content-between align-items-center px-2">
               <h3>In Cart</h3>
-              <p class="h3 fs-6 badge bg-primary rounded-pill" id="listCounter"></p>
+              <p
+                class="h3 fs-6 badge bg-primary rounded-pill"
+                id="listCounter"
+              ></p>
             </div>
             <ul class="list-group" id="listGroup">
               <!-- <li class="list-group-item">
@@ -138,22 +141,39 @@
           <!-- Order Form -->
           <div class="col-md-7">
             <h4>Shipping Address</h4>
-            <form class="row g-3">
+            <form class="row g-3 need-validation" name="orderForm">
               <div class="col-md-6">
                 <label for="firstname" class="form-label">First Name</label>
-                <input type="text" class="form-control" placeholder="Joe" />
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Joe"
+                  name="firstName"
+                  required
+                />
+                <p class="invalid-feedback">Enter a valid name</p>
               </div>
               <div class="col-md-6">
                 <label for="lastname" class="form-label">Last Name</label>
-                <input type="text" class="form-control" placeholder="Scott" />
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Scott"
+                  name="lastName"
+                  required
+                />
+                <p class="invalid-feedback">Enter a valid last name</p>
               </div>
               <div class="col-md-12">
                 <label for="address" class="form-label">Address </label>
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="123 Street"
+                  placeholder="123 Street Ave"
+                  name="address"
+                  required
                 />
+                <p class="invalid-feedback">Enter a valid address</p>
               </div>
               <div class="col-md-12">
                 <label for="email" class="form-label">Email</label>
@@ -161,19 +181,44 @@
                   type="text"
                   class="form-control"
                   placeholder="example@exam"
+                  name="email"
+                  required
                 />
               </div>
+              <p class="invalid-feedback">Enter a valid email</p>
               <div class="col-md-5">
                 <label for="country" class="form-label">Country</label>
-                <input type="text" class="form-control" placeholder="Country" />
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Country"
+                  name="country"
+                  required
+                  value="USA"
+                  readonly
+                />
               </div>
               <div class="col-md-4">
                 <label for="state" class="form-label">State</label>
-                <input type="text" class="form-control" placeholder="State" />
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="AL"
+                  name="state"
+                  required
+                />
+                <p class="invalid-feedback">Enter a valid state</p>
               </div>
               <div class="col-md-3">
                 <label for="zip" class="form-label">Zip</label>
-                <input type="text" class="form-control" placeholder="Zip" />
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Zip"
+                  name="zip"
+                  required
+                />
+                <p class="invalid-feedback">Enter a valid zip code</p>
               </div>
               <hr class="" />
               <div class="row bg-light border border-1 rounded-3 p-3 mx-2">
@@ -186,26 +231,54 @@
                     type="text"
                     class="form-control"
                     placeholder="Joe Scott"
+                    name="nameOnCard"
+                    required
                   />
+                  <p class="invalid-feedback">Enter a valid name</p>
                 </div>
                 <div class="col-md-6">
                   <label for="cardnumber" class="form-label">Card Number</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="1111-2222-3333-4444"
+                    placeholder="0123456789012345"
+                    name="cardNumber"
+                    value="0123456789012345"
+                    required
                   />
+                  <p class="invalid-feedback">Enter a valid card number</p>
                 </div>
                 <div class="col-sm-5">
-                  <label for="nameOnCard" class="form-label"
+                  <label for="expDate" class="form-label"
                     >Expiration Date</label
                   >
-                  <input type="text" class="form-control" placeholder="12/21" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="12/21"
+                    name="expDate"
+                    required
+                  />
+                  <p class="invalid-feedback">Enter a valid expiration date</p>
                 </div>
                 <div class="col-sm-3">
                   <label for="cvv" class="form-label">CVV</label>
-                  <input type="text" class="form-control" placeholder="123" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="123"
+                    name="cvv"
+                    required
+                  />
+                  <p class="invalid-feedback">Enter a valid cvv</p>
                 </div>
+              </div>
+              <div>
+                <button class="btn w-100 p-0" type="button" id="submitBtn">
+                  <a href="order.html" class="btn btn-lg btn-primary w-100 m-0"
+                    >Place Order</a
+                  >
+                </button>
               </div>
             </form>
           </div>
@@ -222,11 +295,9 @@
             </div>
           </div>
           <div class="col">
-            <div class="d-flex justify-content-center justify-content-md-end">
-              <a href="order.html" class="btn btn-lg btn-primary"
-                >Place Order</a
-              >
-            </div>
+            <div
+              class="d-flex justify-content-center justify-content-md-end"
+            ></div>
           </div>
         </div>
       </div>
