@@ -13,7 +13,7 @@
         "salePrice": 50,
         "incart": 0,
         "info": "Apple phone are amazing.",
-        "sale": false
+        "sale": true
     },
     {
         "name": "Google",

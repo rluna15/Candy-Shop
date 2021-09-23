@@ -14,7 +14,6 @@ async function Main() {
     CreateShop(items);
     CreateCart();
     DisplayCount();
-    DisplayItemsOnSale(items);
     DisplayItemList();
     GetDataFromLocalStorage();
     OrderValidation();
@@ -48,8 +47,8 @@ function CreateShop(items) {
                         ${items[i].name}
                         </h5>
                         <div class="d-flex justify-content-center">
-                        <h5 class="text-muted m-3" id="price">$${items[i].price}</h5>
-                        <h5 class="text-muted m-3" id="salePrice">$${items[i].salePrice}</h5>
+                        <h5 class="m-3" id="price">$${items[i].price}</h5>
+                        <h5 class="m-3" id="salePrice">$${items[i].salePrice}</h5>
                         </div>
                         <button class="btn btn-outline-dark"
                             data-bs-toggle="modal" 
@@ -69,9 +68,9 @@ function CreateShop(items) {
                         </div>
                         <div class="modal-body">
                             <img class="img-fluid"src="./images/placeholder.png"/>
-                            <h4 id="price-modal">$${items[i].price}</h4>
-                            <h4 id="salePrice-modal">$${items[i].salePrice}</h4>
                             <p>${items[i].info}</p>
+                            <h4 class="d-inline" id="price-modal">$${items[i].price}</h4>
+                            <h4 id="salePrice-modal">$${items[i].salePrice}</h4>
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-outline-primary" id="addToCart"> Add To Cart</button>
@@ -85,6 +84,7 @@ function CreateShop(items) {
     } else {
         return;
     }
+    DisplayItemsOnSale(items);
 }
 
 function GetBuyButtonsListeners(items) {
@@ -421,6 +421,8 @@ function DisplayItemsOnSale(items) {
     let saleBadge = document.querySelectorAll("#saleBadge");
     let price = document.querySelectorAll("#price");
     let salePrice = document.querySelectorAll("#salePrice");
+    let priceModal = document.querySelectorAll("#price-modal");
+    let salePriceModal = document.querySelectorAll("#salePrice-modal");
 
     if (shopContainer) {
         for (var i = 0; i < items.length; i++) {
@@ -428,8 +430,12 @@ function DisplayItemsOnSale(items) {
             if (!items[i].sale) {
                 saleBadge[i].classList.add("d-none");
                 salePrice[i].classList.add("d-none");
+                salePriceModal[i].classList.add("d-none")
             } else {
                 price[i].classList.add("text-decoration-line-through");
+                priceModal[i].classList.add("text-decoration-line-through");
+                priceModal[i].classList.add("text-muted");
+                price[i].classList.add("text-muted");
             }
         }
     } else {
