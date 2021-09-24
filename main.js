@@ -41,7 +41,7 @@ function CreateShop(items) {
             <div class="col" id="item">
                 <div class="card shadow-sm h-100">
                     <span class="position-absolute top-0 end-0 badge bg-danger m-2" id="saleBadge">Sale</span>
-                    <img src="./images/placeholder.png" alt="" />
+                    <img src="./images/${items[i].image}.jpg" alt="" />
                     <div class="card-body text-center">
                         <h5 class="fw-bold">
                         ${items[i].name}
@@ -67,10 +67,12 @@ function CreateShop(items) {
                             <button class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
-                            <img class="img-fluid"src="./images/placeholder.png"/>
+                            <img class="img-fluid"src="./images/${items[i].image}.jpg"/>
                             <p>${items[i].info}</p>
+                            <div class="">
                             <h4 class="d-inline" id="price-modal">$${items[i].price}</h4>
-                            <h4 id="salePrice-modal">$${items[i].salePrice}</h4>
+                            <h4 class="d-inline" id="salePrice-modal">$${items[i].salePrice}</h4>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-outline-primary" id="addToCart"> Add To Cart</button>
@@ -139,7 +141,7 @@ function CreateCart() {
                     <div class="row row-cols-1 row-cols-md-1 row-cols-lg-6">
                     <img
                         class="img-fluid mb-sm-3 mb-lg-0"
-                        src="./images/placeholder.png"
+                        src="./images/${cartItems[i].image}.jpg"
                         alt=""
                     />
                     <div
@@ -208,8 +210,7 @@ function CreateCart() {
                         mb-sm-3 mb-lg-0
                         "
                     >
-                        <button id="delete" class="btn btn-outline-danger bi-x-lg"></button>
-                    </div>
+                        <button id="delete" class="btn btn-outline-danger bi-x-lg mb-3 mb-sm-0"></button>
                     </div>
                 </div>
                 `;
@@ -217,81 +218,76 @@ function CreateCart() {
                     cartContainer.innerHTML += `
                     <div id="cartItem" class="border border-1 rounded-3 shadow-sm my-3">
                     <div class="row row-cols-1 row-cols-md-1 row-cols-lg-6">
-                    <img
+                        <img
                         class="img-fluid mb-sm-3 mb-lg-0"
-                        src="./images/placeholder.png"
+                        src="./images/${cartItems[i].image}.jpg"
                         alt=""
-                    />
-                    <div
+                        />
+                        <div
                         class="
-                        h5
-                        d-flex
-                        justify-content-center
-                        align-items-center
-                        mb-sm-3 mb-lg-0
+                            h5
+                            d-flex
+                            justify-content-center
+                            align-items-center
+                            mb-sm-3 mb-lg-0
                         "
-                    >
+                        >
                         <span>${cartItems[i].name}</span>
-                    </div>
-                    <div
+                        </div>
+                        <div
                         class="
-                        h5
-                        d-flex
-                        justify-content-center
-                        align-items-center
-                        mb-sm-3 mb-lg-0
+                            h5
+                            d-flex
+                            justify-content-center
+                            align-items-center
+                            mb-sm-3 mb-lg-0
                         "
-                    >
+                        >
                         <span>Price:</span>
                         <span class="px-2">$${cartItems[i].price}</span>
                         <span class="px-2"></span>
-                    </div>
-                    <div
+                        </div>
+                        <div
                         class="
-                        fs-4
-                        text-center
-                        d-lg-flex
-                        justify-content-center
-                        align-items-center
-                        mb-sm-3 mb-lg-0
+                            fs-4
+                            text-center
+                            d-lg-flex
+                            justify-content-center
+                            align-items-center
+                            mb-sm-3 mb-lg-0
                         "
-                    >
+                        >
                         <span
-                        class="btn-sm btn-outline-primary bi bi-caret-left"
-                        id="minus"
-                        style="font-size: 25px"
+                            class="btn-sm btn-outline-primary bi bi-caret-left"
+                            id="minus"
+                            style="font-size: 25px"
                         ></span>
                         <span class="px-1 fw-bold mx-2" id="counter">${cartItems[i].incart}</span>
                         <span
-                        class="btn-sm btn-outline-primary bi bi-caret-right"
-                        id="plus"
-                        style="font-size: 25px"
+                            class="btn-sm btn-outline-primary bi bi-caret-right"
+                            id="plus"
+                            style="font-size: 25px"
                         ></span>
-                    </div>
-                    <div
+                        </div>
+                        <div
                         class="
-                        h5
-                        d-flex
-                        justify-content-center
-                        align-items-center
-                        mb-sm-3 mb-lg-0
+                            h5
+                            d-flex
+                            justify-content-center
+                            align-items-center
+                            mb-sm-3 mb-lg-0
                         "
-                    >
+                        >
                         <span>Total:</span>
                         <span class="px-2">$${cartItems[i].price * cartItems[i].incart}</span>
+                        </div>
+                        <div
+                        class="d-flex justify-content-center align-items-center mb-sm-3 mb-lg-0"
+                        >
+                        <button id="delete" class="btn btn-outline-danger bi-x-lg mb-3 mb-sm-0"></button>
+                        </div>
                     </div>
-                    <div
-                        class="
-                        d-flex
-                        justify-content-center
-                        align-items-center
-                        mb-sm-3 mb-lg-0
-                        "
-                    >
-                        <button id="delete" class="btn btn-outline-danger bi-x-lg"></button>
-                    </div>
-                    </div>
-                </div>
+
                 `;
                 }
             }
@@ -675,9 +671,12 @@ function RemoveDataFromStorage() {
 
 function DisplayBilling() {
     let orderDetails = document.querySelector("#orderDetails");
+    
 
     if (orderDetails != undefined) {
         let billing = JSON.parse(localStorage.getItem("Billing"));
+        let count = document.querySelector("#count");
+        count.innerHTML = '';
         orderDetails.innerHTML = `
         <p class="fw-bold">
             Name: <span class="fw-normal">${billing.name}</span>
@@ -726,6 +725,7 @@ function DisplayBilling() {
     } else {
         return;
     }
+    RemoveDataFromStorage();
 }
 
 Main();

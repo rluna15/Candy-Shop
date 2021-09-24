@@ -1,35 +1,20 @@
 [
     {
-        "name": "Apple",
-        "price": 100,
-        "salePrice": 50,
+        "name": "Candy-Corn",
+        "price": 10,
+        "salePrice": 8,
         "incart": 0,
-        "info": "Apple phone are amazing.",
-        "sale": true
+        "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.",
+        "sale": false,
+        "image": "product0"
     },
     {
-        "name": "Galaxy",
-        "price": 100,
-        "salePrice": 50,
+        "name": "Sweet-Grapes",
+        "price": 12,
+        "salePrice": 10,
         "incart": 0,
-        "info": "Apple phone are amazing.",
-        "sale": true
-    },
-    {
-        "name": "Google",
-        "price": 100,
-        "salePrice": 50,
-        "incart": 0,
-        "info": "Apple phone are amazing.",
-        "sale": false
-    },
-    {
-        "name": "Samsung",
-        "price": 100,
-        "salePrice": 50,
-        "incart": 0,
-        "info": "Apple phone are amazing.",
-        "sale": false
+        "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.",
+        "sale": true,
+        "image": "product1"
     }
-    
 ]
