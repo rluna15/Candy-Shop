@@ -44,7 +44,7 @@ function CreateShop(items) {
                     <img src="./images/${items[i].image}.jpg" alt="" />
                     <div class="card-body text-center">
                         <h5 class="fw-bold">
-                        ${items[i].name}
+                        ${FormatName(items[i].name)}
                         </h5>
                         <div class="d-flex justify-content-center">
                         <h5 class="m-3" id="price">$${items[i].price}</h5>
@@ -63,7 +63,7 @@ function CreateShop(items) {
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title fw-bold">${items[i].name}</h5>
+                            <h5 class="modal-title fw-bold">${FormatName(items[i].name)}</h5>
                             <button class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
@@ -132,8 +132,11 @@ function ItemCounter() {
 function CreateCart() {
     let cartContainer = document.querySelector("#cart-container");
     let cartItems = GetDataFromLocalStorage();
+
     if (cartContainer) {
+
         if (cartItems.length > 0) {
+            
             for (let i = 0; i < cartItems.length; i++) {
                 if (cartItems[i].sale) {
                     cartContainer.innerHTML += `
@@ -153,7 +156,7 @@ function CreateCart() {
                         mb-sm-3 mb-lg-0
                         "
                     >
-                        <span>${cartItems[i].name}</span>
+                        <span>${FormatName(cartItems[i].name)}</span>
                     </div>
                     <div
                         class="
@@ -232,7 +235,7 @@ function CreateCart() {
                             mb-sm-3 mb-lg-0
                         "
                         >
-                        <span>${cartItems[i].name}</span>
+                        <span>${FormatName(cartItems[i].name)}</span>
                         </div>
                         <div
                         class="
@@ -671,7 +674,7 @@ function RemoveDataFromStorage() {
 
 function DisplayBilling() {
     let orderDetails = document.querySelector("#orderDetails");
-    
+
 
     if (orderDetails != undefined) {
         let billing = JSON.parse(localStorage.getItem("Billing"));
@@ -726,6 +729,10 @@ function DisplayBilling() {
         return;
     }
     RemoveDataFromStorage();
+}
+
+function FormatName(name) {
+    return name.replace("-", " ");
 }
 
 Main();
