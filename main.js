@@ -5,7 +5,7 @@ async function GetProductsJSON() {
         let data = await res.json();
         return data;
     } catch (error) {
-        console.log(error);
+        console.log("Json file was not found",error);
     }
 }
 
@@ -294,10 +294,10 @@ function CreateCart() {
                 `;
                 }
             }
+            DisplayTotal();
             GetDeleteButtons();
             GetQuantityButtons();
             DisplayCount();
-            CalculateTotal();
         } else {
             let btnlower = document.querySelector("#btnCheckout");
             btnlower.classList.add("d-none");
@@ -319,6 +319,16 @@ function CreateCart() {
     } else {
         return;
     }
+}
+
+function DisplayTotal() {
+    console.log("made it to display total");
+    let cartContainer = document.querySelector("#cart-container");
+    cartContainer.innerHTML += `
+            <div class="d-flex justify-content-end my-4">
+                <h3 class="px-4">Total: $${CalculateTotal()}</h3>
+            </div>
+            `;
 }
 
 function GetDeleteButtons() {
