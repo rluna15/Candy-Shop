@@ -19,26 +19,26 @@
     },
     {
         "name": "Jaw-Breakers",
-        "price": 12,
+        "price": 15,
         "salePrice": 10,
         "incart": 0,
         "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.",
-        "sale": true,
+        "sale": false,
         "image": "product2"
     },
     {
         "name": "Candy-Cane",
-        "price": 12,
-        "salePrice": 10,
+        "price": 10,
+        "salePrice": 8,
         "incart": 0,
         "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.",
-        "sale": true,
+        "sale": false,
         "image": "product3"
     },
     {
         "name": "Gummies-Bears",
-        "price": 12,
-        "salePrice": 10,
+        "price": 13,
+        "salePrice": 8,
         "incart": 0,
         "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.",
         "sale": true,
@@ -46,26 +46,26 @@
     },
     {
         "name": "Dog-Teats",
-        "price": 12,
-        "salePrice": 10,
+        "price": 15,
+        "salePrice": 13,
         "incart": 0,
         "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.",
-        "sale": true,
+        "sale": false,
         "image": "product5"
     },
     {
         "name": "Dog-Cakes",
-        "price": 12,
-        "salePrice": 10,
+        "price": 25,
+        "salePrice": 20,
         "incart": 0,
         "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.",
-        "sale": true,
+        "sale": false,
         "image": "product6"
     },
     {
         "name": "Straberry-Roll",
-        "price": 12,
-        "salePrice": 10,
+        "price": 6,
+        "salePrice": 4,
         "incart": 0,
         "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.",
         "sale": true,
@@ -73,29 +73,38 @@
     },
     {
         "name": "Cream-Fills",
-        "price": 12,
-        "salePrice": 10,
+        "price": 9,
+        "salePrice": 7,
         "incart": 0,
         "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.",
-        "sale": true,
+        "sale": false,
         "image": "product8"
     },
     {
         "name": "Raspberry-Cakes",
-        "price": 12,
-        "salePrice": 10,
+        "price": 7,
+        "salePrice": 6,
         "incart": 0,
         "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.",
-        "sale": true,
+        "sale": false,
         "image": "product9"
     },
     {
         "name": "Cream-Blueberry",
-        "price": 12,
-        "salePrice": 10,
+        "price": 6,
+        "salePrice": 4,
         "incart": 0,
         "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.",
-        "sale": true,
+        "sale": false,
         "image": "product10"
+    },
+    {
+        "name": "Conchas",
+        "price": 5,
+        "salePrice": 3,
+        "incart": 0,
+        "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.",
+        "sale": false,
+        "image": "product11"
     }
 ]
