@@ -40,7 +40,7 @@ function CreateShop(items) {
             container.innerHTML += `
             <div class="col" id="item">
                 <div class="card shadow-sm h-100">
-                    <span class="position-absolute top-0 end-0 badge bg-danger m-2" id="saleBadge">Sale</span>
+                    <span class="position-absolute top-0 end-0 badge bg-danger m-2 border border-light" id="saleBadge">Sale</span>
                     <img src="./images/${items[i].image}.jpg" alt="" />
                     <div class="card-body text-center">
                         <h5 class="fw-bold">

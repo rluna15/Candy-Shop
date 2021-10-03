@@ -16,5 +16,86 @@
         "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.",
         "sale": true,
         "image": "product1"
+    },
+    {
+        "name": "Jaw-Breakers",
+        "price": 12,
+        "salePrice": 10,
+        "incart": 0,
+        "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.",
+        "sale": true,
+        "image": "product2"
+    },
+    {
+        "name": "Candy-Cane",
+        "price": 12,
+        "salePrice": 10,
+        "incart": 0,
+        "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.",
+        "sale": true,
+        "image": "product3"
+    },
+    {
+        "name": "Gummies-Bears",
+        "price": 12,
+        "salePrice": 10,
+        "incart": 0,
+        "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.",
+        "sale": true,
+        "image": "product4"
+    },
+    {
+        "name": "Dog-Teats",
+        "price": 12,
+        "salePrice": 10,
+        "incart": 0,
+        "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.",
+        "sale": true,
+        "image": "product5"
+    },
+    {
+        "name": "Dog-Cakes",
+        "price": 12,
+        "salePrice": 10,
+        "incart": 0,
+        "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.",
+        "sale": true,
+        "image": "product6"
+    },
+    {
+        "name": "Straberry-Roll",
+        "price": 12,
+        "salePrice": 10,
+        "incart": 0,
+        "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.",
+        "sale": true,
+        "image": "product7"
+    },
+    {
+        "name": "Cream-Fills",
+        "price": 12,
+        "salePrice": 10,
+        "incart": 0,
+        "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.",
+        "sale": true,
+        "image": "product8"
+    },
+    {
+        "name": "Raspberry-Cakes",
+        "price": 12,
+        "salePrice": 10,
+        "incart": 0,
+        "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.",
+        "sale": true,
+        "image": "product9"
+    },
+    {
+        "name": "Cream-Blueberry",
+        "price": 12,
+        "salePrice": 10,
+        "incart": 0,
+        "info": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum doloribus optio laborum dignissimos adipisci vero in sint eveniet esse, eaque consequuntur provident, dolore impedit, ad dolor quisquam maiores dicta.",
+        "sale": true,
+        "image": "product10"
     }
 ]
