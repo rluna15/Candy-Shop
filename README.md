@@ -1,6 +1,6 @@
 # Candy-Shop
 This is a small shop that adds items to a cart and will calculate the total when confirming an order.<br>
-The whole site is made using [Boostrap 5](https://getbootstrap.com/), HTML and JavaScript.
+The whole site is made using [Boostrap 5](https://getbootstrap.com/), HTML and JavaScript. [Live Demo](https://rluna15.github.io/Candy-Shop/)
 ***
 
 ## Table of Contents
